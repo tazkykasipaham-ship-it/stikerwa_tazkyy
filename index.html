@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tazkyy Web Stiker // Premium Edition</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+    
+    <!-- ============================================== -->
+    <!-- BAGIAN 1: CSS INTERNAL (SUDAH DIPERBAIKI)      -->
+    <!-- ============================================== -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.85)), url('https://i.imgur.com/sXS28M0.jpeg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+
+        .font-syne { 
+            font-family: 'Syne', sans-serif; 
+        }
+
+        .glass {
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        /* Menggabungkan properti .panel-step yang sebelumnya terpisah */
+        .panel-step {
+            background: rgba(255, 255, 255, 0.01);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            transition: all 0.3s ease;
+        }
+
+        .panel-step:focus-within {
+            border-color: rgba(139, 92, 246, 0.4);
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .glass-glow {
+            box-shadow: 0 0 50px -10px rgba(139, 92, 246, 0.15);
+        }
+    </style>
+</head>
+
+<body class="text-gray-200 min-h-screen flex flex-col justify-between p-4 sm:p-6 overflow-x-hidden">
+
+    <!-- ============================================== -->
+    <!-- BAGIAN 2: STRUKTUR HTML                        -->
+    <!-- ============================================== -->
+    
+    <!-- LUXURY LOGIN GATE -->
+    <div id="loginScreen" class="fixed inset-0 z-50 flex items-center justify-center bg-cover bg-center bg-no-repeat transition-all duration-700 ease-in-out" 
+     style="background-image: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.6)), url('https://i.imgur.com/sXS28M0.jpeg');">
+
+        <div class="glass glass-glow rounded-3xl p-8 max-w-md w-full mx-4 text-center space-y-6 relative border border-white/10">
+            <div class="absolute -top-12 -left-12 w-32 h-32 bg-violet-600/10 rounded-full blur-3xl"></div>
+            
+            <div class="space-y-2">
+                <div class="text-3xl font-syne tracking-wider uppercase text-transparent bg-clip-text bg-gradient-to-r from-violet-400 via-purple-400 to-fuchsia-500">
+                    Tazkyy <span class="font-light text-white">Web Stiker</span>
+                </div>
+                <p class="text-xs tracking-widest text-gray-500 uppercase">Premium Creator Access</p>
+            </div>
+
+            <div class="space-y-4 pt-4">
+                <input type="password" id="passkeyInput" placeholder="Masukkan Kode Akses..." 
+                       class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3.5 text-center text-white font-medium tracking-widest focus:outline-none focus:border-violet-500 transition-all placeholder:text-gray-600 placeholder:tracking-normal" />
+                <p id="loginError" class="text-xs text-rose-400 font-medium opacity-0 transition-opacity duration-300">Kode salah! mo ngapain sih dek😹😜</p>
+            </div>
+
+            <button id="loginBtn" class="w-full bg-gradient-to-r from-violet-600 to-fuchsia-600 hover:from-violet-500 hover:to-fuchsia-500 text-white font-semibold py-3.5 rounded-xl shadow-lg shadow-violet-900/40 transition-all transform hover:-translate-y-0.5 active:translate-y-0 cursor-pointer">
+                Login
+            </button>
+        </div>
+    </div>
+
+    <!-- MAIN STUDIO APP -->
+    <div id="mainStudio" class="opacity-0 transition-opacity duration-700 pointer-events-none w-full flex flex-col justify-between flex-grow space-y-6">
+        <header class="w-full max-w-6xl mx-auto flex justify-between items-center py-2">
+            <div class="text-2xl font-syne tracking-wider uppercase text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-fuchsia-500">
+                Tazkyy <span class="font-light text-white">Web Stiker</span>
+            </div>
+            <div class="text-xs tracking-widest text-violet-400 uppercase bg-violet-500/10 px-3 py-1.5 rounded-full border border-violet-500/20 font-medium">PRO STUDIO</div>
+        </header>
+
+        <main class="w-full max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-start my-auto">
+            <div class="lg:col-span-7 space-y-4">
+                <!-- PANEL KONTROL -->
+                <div class="panel-step rounded-2xl p-5 space-y-4">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center gap-2">
+                            <span class="flex items-center justify-center w-6 h-6 rounded-full bg-violet-500/20 text-violet-400 text-xs font-bold">1</span>
+                            <h2 class="text-sm font-semibold text-white uppercase tracking-wider">Pilih Foto & Efek</h2>
+                        </div>
+                        <div class="flex items-center gap-2 bg-white/5 border border-white/10 px-2.5 py-1 rounded-xl">
+                            <span class="text-[11px] font-medium text-gray-300">Mode HD</span>
+                            <label class="relative inline-flex items-center cursor-pointer scale-90">
+                                <input type="checkbox" id="hdToggle" class="sr-only peer">
+                                <div class="w-9 h-5 bg-gray-700 rounded-full peer peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-violet-500"></div>
+                            </label>
+                        </div>
+                    </div>
+                    <input type="file" id="imageInput" accept="image/*" class="w-full text-xs text-gray-400 file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-white/5 file:text-gray-200 hover:file:bg-white/10 cursor-pointer" />
+                </div>
+
+                <div class="panel-step rounded-2xl p-5 space-y-4">
+                    <div class="flex items-center gap-2">
+                        <span class="flex items-center justify-center w-6 h-6 rounded-full bg-violet-500/20 text-violet-400 text-xs font-bold">2</span>
+                        <h2 class="text-sm font-semibold text-white uppercase tracking-wider">Atur Posisi Foto</h2>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-1">
+                        <div class="space-y-1"><span class="text-xs text-gray-400">Zoom Skala</span><input type="range" id="imgZoom" min="50" max="300" value="100" class="w-full accent-violet-400 bg-white/10 h-1.5 rounded-lg appearance-none" /></div>
+                        <div class="space-y-1"><span class="text-xs text-gray-400">Geser Kiri/Kanan</span><input type="range" id="imgX" min="-300" max="300" value="0" class="w-full accent-violet-400 bg-white/10 h-1.5 rounded-lg appearance-none" /></div>
+                        <div class="space-y-1"><span class="text-xs text-gray-400">Geser Atas/Bawah</span><input type="range" id="imgY" min="-300" max="300" value="0" class="w-full accent-violet-400 bg-white/10 h-1.5 rounded-lg appearance-none" /></div>
+                    </div>
+                </div>
+
+                <div class="panel-step rounded-2xl p-5 space-y-4">
+                    <div class="flex items-center gap-2">
+                        <span class="flex items-center justify-center w-6 h-6 rounded-full bg-violet-500/20 text-violet-400 text-xs font-bold">3</span>
+                        <h2 class="text-sm font-semibold text-white uppercase tracking-wider">Desain Teks</h2>
+                    </div>
+                    <textarea id="stickerText" rows="2" placeholder="Ketik teks..." class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-xs text-white focus:outline-none focus:border-violet-500 transition-colors placeholder:text-gray-600 resize-none"></textarea>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div class="space-y-1"><span class="text-xs text-gray-400 block">Tinggi Letak</span><input type="range" id="textY" min="40" max="480" value="430" class="w-full accent-violet-500 bg-white/10 h-1.5 rounded-lg appearance-none" /></div>
+                        <div class="space-y-1"><span class="text-xs text-gray-400 block">Ukuran Huruf</span><input type="range" id="fontSize" min="20" max="70" value="38" class="w-full accent-violet-500 bg-white/10 h-1.5 rounded-lg appearance-none" /></div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4 pt-1">
+                        <div class="flex items-center justify-between bg-white/5 border border-white/10 rounded-xl p-2"><span class="text-xs text-gray-400">Warna Teks</span><input type="color" id="textColor" value="#ffffff" class="w-8 h-8 bg-transparent border-0 cursor-pointer rounded" /></div>
+                        <div class="flex items-center justify-between bg-white/5 border border-white/10 rounded-xl p-2"><span class="text-xs text-gray-400">Garis Luar</span><input type="color" id="strokeColor" value="#000000" class="w-8 h-8 bg-transparent border-0 cursor-pointer rounded" /></div>
+                    </div>
+                </div>
+                <button id="downloadBtn" class="w-full bg-gradient-to-r from-violet-600 to-fuchsia-600 hover:from-violet-500 hover:to-fuchsia-500 text-white font-semibold py-4 rounded-2xl shadow-xl text-sm tracking-wider cursor-pointer transition-all transform hover:-translate-y-0.5">UNDUH STIKER WHATSAPP</button>
+            </div>
+
+            <!-- PREVIEW -->
+            <div class="lg:col-span-5 flex flex-col items-center justify-center lg:sticky lg:top-6">
+                <span class="text-[11px] uppercase tracking-widest text-gray-500 font-bold mb-3">Live Monitor Canvas</span>
+                <div class="relative p-4 rounded-3xl bg-white/[0.02] border border-white/5 shadow-2xl glass-glow">
+                    <div class="absolute inset-4 rounded-2xl opacity-5 bg-[linear-gradient(45deg,#ccc_25%,transparent_25%),linear-gradient(-45deg,#ccc_25%,transparent_25%),linear-gradient(45deg,transparent_75%,#ccc_75%),linear-gradient(-45deg,transparent_75%,#ccc_75%)] bg-[size:16px_16px]"></div>
+                    <canvas id="stickerCanvas" width="512" height="512" class="relative z-10 w-72 h-72 sm:w-80 sm:h-80 md:w-96 md:h-96 rounded-2xl border border-white/10 bg-black/60"></canvas>
+                </div>
+            </div>
+        </main>
+        <footer class="w-full text-center text-xs text-gray-600 pt-6 border-t border-white/5">&copy; 2026 Tazkyy Web Stiker.</footer>
+    </div>
+
+    <!-- ============================================== -->
+    <!-- BAGIAN 3: JAVASCRIPT INTERNAL                  -->
+    <!-- ============================================== -->
+    <script>
+        const loginScreen = document.getElementById('loginScreen');
+        const mainStudio = document.getElementById('mainStudio');
+        const passkeyInput = document.getElementById('passkeyInput');
+        const loginBtn = document.getElementById('loginBtn');
+        const loginError = document.getElementById('loginError');
+
+        const canvas = document.getElementById('stickerCanvas');
+        const ctx = canvas.getContext('2d');
+        const imageInput = document.getElementById('imageInput');
+        const stickerText = document.getElementById('stickerText');
+        const textColor = document.getElementById('textColor');
+        const strokeColor = document.getElementById('strokeColor');
+        const fontSize = document.getElementById('fontSize');
+        const textY = document.getElementById('textY');
+        const downloadBtn = document.getElementById('downloadBtn');
+
+        const hdToggle = document.getElementById('hdToggle');
+        const imgZoom = document.getElementById('imgZoom');
+        const imgX = document.getElementById('imgX');
+        const imgY = document.getElementById('imgY');
+
+        let uploadedImage = null;
+
+        function checkLogin() {
+            if (passkeyInput.value.trim() === 'tazkyy') {
+                loginScreen.classList.add('opacity-0', 'pointer-events-none');
+                mainStudio.classList.remove('opacity-0', 'pointer-events-none');
+                mainStudio.classList.add('opacity-100');
+                initCanvas();
+            } else {
+                loginError.classList.remove('opacity-0');
+                loginError.classList.add('opacity-100');
+            }
+        }
+
+        loginBtn.addEventListener('click', checkLogin);
+        passkeyInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') checkLogin(); });
+
+        function initCanvas() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = "rgba(0, 0, 0, 0.4)";
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            if (!uploadedImage) {
+                ctx.fillStyle = "#4b5563";
+                ctx.font = "14px Inter, sans-serif";
+                ctx.textAlign = "center";
+                ctx.fillText("Unggah foto di panel kiri untuk memulai...", canvas.width / 2, canvas.height / 2);
+            }
+        }
+
+        function drawSticker() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            if (uploadedImage) {
+                ctx.save();
+                if (hdToggle.checked) {
+                    ctx.imageSmoothingEnabled = true;
+                    ctx.imageSmoothingQuality = 'high';
+                    ctx.filter = 'contrast(1.18) saturate(1.06) brightness(1.02)';
+                } else {
+                    ctx.imageSmoothingEnabled = true;
+                    ctx.imageSmoothingQuality = 'medium';
+                    ctx.filter = 'none';
+                }
+                const baseHRatio = canvas.width / uploadedImage.width;
+                const baseVRatio = canvas.height / uploadedImage.height;
+                const baseRatio = Math.max(baseHRatio, baseVRatio);
+                const finalRatio = baseRatio * (parseInt(imgZoom.value, 10) / 100);
+                const centerX = canvas.width / 2;
+                const centerY = canvas.height / 2;
+                const moveX = parseInt(imgX.value, 10);
+                const moveY = parseInt(imgY.value, 10);
+                ctx.translate(centerX + moveX, centerY + moveY);
+                ctx.drawImage(uploadedImage, -(uploadedImage.width * finalRatio) / 2, -(uploadedImage.height * finalRatio) / 2, uploadedImage.width * finalRatio, uploadedImage.height * finalRatio);
+                ctx.restore();
+                ctx.filter = 'none';
+            } else {
+                initCanvas();
+            }
+
+            const text = stickerText.value.trim();
+            if (text) {
+                const fSize = parseInt(fontSize.value, 10);
+                const targetY = parseInt(textY.value, 10);
+                const words = text.split(' ');
+                let line = '';
+                let lines = [];
+                ctx.font = `bold ${fSize}px Impact, Inter, sans-serif`;
+                ctx.textAlign = "center";
+                ctx.textBaseline = "middle";
+                for (let n = 0; n < words.length; n++) {
+                    let testLine = line + words[n] + ' ';
+                    if (ctx.measureText(testLine).width > (canvas.width - 40) && n > 0) {
+                        lines.push(line);
+                        line = words[n] + ' ';
+                    } else {
+                        line = testLine;
+                    }
+                }
+                lines.push(line);
+                let startY = targetY - (((lines.length - 1) * (fSize * 1.15)) / 2);
+                lines.forEach((currentLine, index) => {
+                    let lineY = startY + (index * (fSize * 1.15));
+                    let cleanTxt = currentLine.trim();
+                    ctx.strokeStyle = strokeColor.value;
+                    ctx.lineWidth = Math.max(5, fSize / 5.5);
+                    ctx.lineJoin = "round";
+                    ctx.strokeText(cleanTxt, canvas.width / 2, lineY);
+                    ctx.fillStyle = textColor.value;
+                    ctx.fillText(cleanTxt, canvas.width / 2, lineY);
+                });
+            }
+        }
+
+        imageInput.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = (event) => {
+                    const img = new Image();
+                    img.onload = () => { uploadedImage = img; drawSticker(); };
+                    img.src = event.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        [stickerText, textColor, strokeColor, fontSize, textY, hdToggle, imgZoom, imgX, imgY].forEach(element => {
+            element.addEventListener('input', drawSticker);
+        });
+
+        downloadBtn.addEventListener('click', () => {
+            if (!uploadedImage && !stickerText.value) return;
+            canvas.toBlob((blob) => {
+                const url = URL.createObjectURL(blob);
+                const link = document.createElement('a');
+                link.download = 'tazkyy-premium-sticker.png';
+                link.href = url;
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                setTimeout(() => URL.revokeObjectURL(url), 150);
+            }, 'image/png');
+        });
+    </script>
+</body>
+</html>
